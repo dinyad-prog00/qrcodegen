@@ -48,7 +48,7 @@ function App() {
             <div className='col-md-6'>
               <div className='col-md-10 offset-md-1'>
                 <Form>
-                  <TextInput name="Lien" onChange={(t) => setLink(t)} />
+                  <TextInput name="Lien" onChange={(t) => setLink(t)} defaultValue="www.dinyad.fr" />
                   <ColorInput name="Bg color" defaultColor='#000000' onChange={(c) => setBgColor(c)} setColorO={setBgColorO} />
                   <ColorInput name="Fg color" defaultColor='#ffffff' onChange={(c) => setFgColor(c)}  setColorO={setFgColorO}/>
                 </Form>
