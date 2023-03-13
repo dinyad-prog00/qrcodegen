@@ -43,7 +43,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <div className='col-md-6 offset-md-3 pt-5'>
-          <h1>Dinyad Qr Code Gen</h1>
+          <h1 children="mb-5">Dinyad QR Code Generator</h1>
           <div className='row'>
             <div className='col-md-6'>
               <div className='col-md-10 offset-md-1'>
