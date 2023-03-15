@@ -1,3 +1,5 @@
+import { setter } from "../utils/setter";
+//string ('rounded' 'dots' 'classy' 'classy-rounded' 'square' 'extra-rounded')
 const initialProps = {
     data: "www.dinyad.fr",
     height: 300, 
@@ -6,15 +8,20 @@ const initialProps = {
             color : "#ffffff"
     },
     dotsOptions : {
-        color : "#000000"
+        color : "#000000",
+        //type : "extra-rounded"
+    },
+    cornersSquareOptions : {
+        //type:"extra-rounded"
     }
 }
 const qrProps = (state = initialProps, action) => {
     switch (action.type) {
         case "UPDATE_QR":
-            let newS = { ...state };
+            var newS = { ...state };
             Object.keys(action.payload).forEach(k => {
-                newS[k] = action.payload[k]
+                newS=setter(newS,k,action.payload[k])
+                //newS[k] = action.payload[k]
             });
             return newS;
         default:
@@ -22,12 +29,13 @@ const qrProps = (state = initialProps, action) => {
     }
 }
 
-const context = (state = { showColorPicker: false, cpdColor: null, colorFor: null }, action) => {
+const context = (state = { showColorPicker: false,showBtColorPicker: false, cpdColor: null, colorFor: null }, action) => {
     switch (action.type) {
         case "UPDATE_CONTEXT":
             var newS = { ...state };
             Object.keys(action.payload).forEach(k => {
-                newS[k] = action.payload[k]
+                newS=setter(newS,k,action.payload[k])
+                //newS[k] = action.payload[k]
             });
             return newS;
         default:

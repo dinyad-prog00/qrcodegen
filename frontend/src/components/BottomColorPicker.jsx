@@ -1,12 +1,24 @@
 import { useEffect } from "react";
 import ColorPicker, { useColorPicker } from "react-best-gradient-color-picker"
 import { useDispatch, useSelector } from "react-redux";
+import { getColor } from "../redux/selectors"
 import { getGradientFromString } from "../utils/gradient";
 
-const SideColorPicker = ({ color, setColor }) => {
+const BottomColorPicker = () => {
     //const { getGradientObject } = useColorPicker(color, setColor);
     const dispatch = useDispatch()
     const colorFor = useSelector((store) => store.context.colorFor)
+    const color = useSelector(getColor(colorFor))
+    const setColor = (color) => {
+        var action = { type: "UPDATE_QR" }
+        if (colorFor == "bg") {
+            action.payload = { "backgroundOptions.color": color }
+        } else if (colorFor == "dots") {
+            action.payload = { "dotsOptions.color": color }
+        }
+        
+        dispatch(action)
+    }
     const handleChange = (color) => {
         
 
@@ -35,8 +47,8 @@ const SideColorPicker = ({ color, setColor }) => {
     };
    
     return (
-        <ColorPicker value={color} onChange={handleChange} />
+        <ColorPicker value={color} onChange={handleChange}  height={70} hideInputs={true} hideOpacity={true} hideHue={false} hideAdvancedSliders={true} hideColorGuide={true} hideInputType={true}/>
     )
 }
 
-export default SideColorPicker
+export default BottomColorPicker

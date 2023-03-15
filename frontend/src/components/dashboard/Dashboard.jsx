@@ -9,19 +9,21 @@ import "../../App.css"
 import QRCodeStyling from 'styled-qr-code';
 import { useState, useEffect, useRef } from "react"
 import store from "../../redux/store"
-
+import ColorPicker from 'react-best-gradient-color-picker'
+import BottomColorPicker from "../BottomColorPicker"
 const qrCode = new QRCodeStyling({ data: "dinyad.fr", height: 300, width: 300 });
 
 
 const Dashboard = () => {
     const qrRef = useRef()
-   
+
 
     //Qr props
     const [link, setLink] = useState("www.dinyad.fr")
 
     const qrProps = useSelector((store) => store.qrProps)
-    const download = useSelector((store)=> store.context.download)
+    const download = useSelector((store) => store.context.download)
+    const showBtColorPicker = useSelector((store) => store.context.showBtColorPicker)
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -32,12 +34,12 @@ const Dashboard = () => {
         qrCode.update(qrProps)
     }, [qrProps])
 
-    useEffect(()=>{
-        if(download){
-            qrCode.download({name:"dinyad-qr",extension:"jpeg"})
+    useEffect(() => {
+        if (download) {
+            qrCode.download({ name: "dinyad-qr", extension: "jpeg" })
             dispatch({ type: "UPDATE_CONTEXT", payload: { download: false } })
         }
-    },[download])
+    }, [download])
 
     return (
 
@@ -45,15 +47,21 @@ const Dashboard = () => {
             <Header />
             <div className="vh-100">
                 <div className="d-flex h-100">
-                    <div className="mh-100">
+                    <div className="mh-100 d-none d-sm-block">
                         <SideNav />
                     </div>
                     <div className="d-flex flex-column w-100">
                         <UnderHeader setLink={setLink} rqCode={qrCode} />
                         <div className="my-auto qr-body h-100 text-center d-flex flex-column" onClick={() => dispatch({ type: "UPDATE_CONTEXT", payload: { showColorPicker: false } })}>
-                            <div className="my-auto">
+                            <div className="my-auto" onClick={() => dispatch({ type: "UPDATE_CONTEXT", payload: { showBtColorPicker: false } })}>
                                 <div ref={qrRef}></div>
                             </div>
+                            {showBtColorPicker &&
+                                <div className="d-flex bg-white py-2 rounded-top d-sm-none">
+                                    <div className="mx-auto">
+                                        <BottomColorPicker />
+                                    </div>
+                                </div>}
                         </div>
                         <Footer />
                     </div>
