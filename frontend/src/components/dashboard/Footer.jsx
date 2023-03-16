@@ -5,7 +5,7 @@ const Footer = () => {
     const dispatch = useDispatch()
     const bgColor = useSelector((store) => store.qrProps.backgroundOptions.color)
     const fgColor = useSelector((store) => store.qrProps.dotsOptions.color)
-    const link = useSelector((store) => store.qrProps.data)
+   
     return (
         <div className="footer mw-100">
             <div className="col h-100 d-flex align-items-center">

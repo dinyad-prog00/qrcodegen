@@ -1,25 +1,20 @@
 import Footer from "./Footer"
 import Header from "./Header"
-import Sidebar from "./Sidebar"
 import SideNav from "./Sidenavs"
-import Sidepanel from "./Sidepanel"
 import UnderHeader from "./UnderHeader"
 import { useDispatch, useSelector } from "react-redux"
 import "../../App.css"
 import QRCodeStyling from 'styled-qr-code';
-import { useState, useEffect, useRef } from "react"
-import store from "../../redux/store"
-import ColorPicker from 'react-best-gradient-color-picker'
+import { useEffect, useRef } from "react"
 import BottomColorPicker from "../BottomColorPicker"
+
 const qrCode = new QRCodeStyling({ data: "dinyad.fr", height: 300, width: 300 });
 
 
 const Dashboard = () => {
     const qrRef = useRef()
 
-
-    //Qr props
-    const [link, setLink] = useState("www.dinyad.fr")
+    
 
     const qrProps = useSelector((store) => store.qrProps)
     const download = useSelector((store) => store.context.download)
@@ -39,6 +34,7 @@ const Dashboard = () => {
             qrCode.download({ name: "dinyad-qr", extension: "jpeg" })
             dispatch({ type: "UPDATE_CONTEXT", payload: { download: false } })
         }
+    // eslint-disable-next-line
     }, [download])
 
     return (
@@ -51,7 +47,7 @@ const Dashboard = () => {
                         <SideNav />
                     </div>
                     <div className="d-flex flex-column w-100">
-                        <UnderHeader setLink={setLink} rqCode={qrCode} />
+                        <UnderHeader />
                         <div className="my-auto qr-body h-100 text-center d-flex flex-column" onClick={() => dispatch({ type: "UPDATE_CONTEXT", payload: { showColorPicker: false } })}>
                             <div className="my-auto" onClick={() => dispatch({ type: "UPDATE_CONTEXT", payload: { showBtColorPicker: false } })}>
                                 <div ref={qrRef}></div>

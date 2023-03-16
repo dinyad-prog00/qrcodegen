@@ -1,5 +1,4 @@
 import ColorButton from "../ColorButton"
-import TextInput from "../TextInput"
 
 import { useDispatch, useSelector } from "react-redux"
 
