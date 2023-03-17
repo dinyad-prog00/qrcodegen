@@ -1,15 +1,20 @@
 import { setter } from "../utils/setter";
 //string ('rounded' 'dots' 'classy' 'classy-rounded' 'square' 'extra-rounded')
+//Numeric, Alphanumeric, Bytes, Kanji
 const initialProps = {
     data: "www.dinyad.fr",
     height: 300, 
     width: 300,
+    qrOptions :{
+        typeNumber : 0, //0-40
+       // mode : "Numeric"
+    },
     backgroundOptions :{
             color : "#ffffff"
     },
     dotsOptions : {
         color : "#000000",
-        //type : "extra-rounded"
+        type : "square"
     },
     cornersSquareOptions : {
         //type:"extra-rounded"
@@ -29,7 +34,7 @@ const qrProps = (state = initialProps, action) => {
     }
 }
 
-const context = (state = { showColorPicker: false,showBtColorPicker: false, cpdColor: null, colorFor: null }, action) => {
+const context = (state = { showColorPicker: true,showBtColorPicker: false, showShapePicker : false, cpdColor: null, colorFor: "dots" }, action) => {
     switch (action.type) {
         case "UPDATE_CONTEXT":
             var newS = { ...state };

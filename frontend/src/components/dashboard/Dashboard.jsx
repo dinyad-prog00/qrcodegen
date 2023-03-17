@@ -48,7 +48,7 @@ const Dashboard = () => {
                     </div>
                     <div className="d-flex flex-column w-100">
                         <UnderHeader />
-                        <div className="my-auto qr-body h-100 text-center d-flex flex-column" onClick={() => dispatch({ type: "UPDATE_CONTEXT", payload: { showColorPicker: false } })}>
+                        <div className="my-auto qr-body h-100 text-center d-flex flex-column" onClick={() => dispatch({ type: "UPDATE_CONTEXT", payload: { showColorPicker: false ,showShapePicker:false} })}>
                             <div className="my-auto" onClick={() => dispatch({ type: "UPDATE_CONTEXT", payload: { showBtColorPicker: false } })}>
                                 <div ref={qrRef}></div>
                             </div>
